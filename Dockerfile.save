@@ -1,0 +1,23 @@
+FROM ubuntu
+MAINTAINER  mukki
+RUN apt-get update
+RUN apt-get -y install software-properties-common
+RUN add-apt-repository ppa:webupd8team/java
+RUN apt-get -y update
+RUN apt-get install -y tomcat7
+ADD  keystor /etc/pki
+ADD server.xml /etc/tomcat7/server.xml
+CMD service tomcat7 restart && tail -f /var/lib/tomcat7/logs/catalina.out
+EXPOSE 8080
+
+FROM ubuntu
+MAINTAINER  mukki
+RUN apt-get update 
+RUN apt-get -y install software-properties-common
+RUN add-apt-repository ppa:webupd8team/java
+RUN apt-get -y update
+RUN apt-get install -y tomcat7
+ADD  keystor /etc/pki
+ADD server.xml /etc/tomcat7/server.xml
+CMD service tomcat7 restart && tail -f /var/lib/tomcat7/logs/catalina.out
+EXPOSE 8080
